@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import Typewriter from 'typewriter-effect';
+import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
 
 export function Hero() {
   return (
@@ -33,11 +34,12 @@ export function Hero() {
                      Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
                   </p>
                   <div className="flex flex-col items-start gap-4 md:flex-row">
-                    <Link href="#programs">
-                      <Button size="lg" className="w-full md:w-auto">
+                    <ProgramQuizDialog />
+                    <Button variant="secondary" size="lg" asChild>
+                      <Link href="#programs">
                         Explore Programs
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   </div>
                 </div>
                 <div className="relative flex justify-center items-center">
