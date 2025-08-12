@@ -1,43 +1,32 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Twitter, Linkedin, Github } from 'lucide-react';
 
-export default function Footer() {
+import Link from "next/link";
+import { Twitter, Linkedin, Facebook, Instagram } from "lucide-react";
+
+export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="w-full bg-primary text-primary-foreground">
-      <div className="container px-4 md:px-6 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link href="/" className="text-2xl font-bold font-headline" prefetch={false}>
-            Rupiece
+    <footer className="w-full border-t">
+      <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 py-8 sm:flex-row">
+        <Link href="/" className="flex items-center gap-2 font-bold text-primary">
+          <span className="text-lg">RUPIECE</span>
+        </Link>
+        <p className="text-sm text-muted-foreground">
+          &copy; {year} RUPIECE Inc. All rights reserved.
+        </p>
+        <div className="flex items-center gap-4">
+          <Link href="#" aria-label="Twitter">
+            <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
           </Link>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-              Privacy Policy
-            </Link>
-            <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-              Terms of Service
-            </Link>
-          </nav>
-          <div className="flex gap-2">
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="#" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="#" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="#" aria-label="GitHub">
-                <Github className="h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-        <div className="mt-8 text-center text-sm text-primary-foreground/70">
-          © {new Date().getFullYear()} Rupiece. All rights reserved.
+          <Link href="#" aria-label="LinkedIn">
+            <Linkedin className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+          </Link>
+          <Link href="#" aria-label="Facebook">
+            <Facebook className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+          </Link>
+           <Link href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <Instagram className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
+          </Link>
         </div>
       </div>
     </footer>
