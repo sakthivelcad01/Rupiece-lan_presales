@@ -75,9 +75,9 @@ export function PreRegisterDialog() {
         ) : (
           <form onSubmit={handleSubmit}>
             <DialogHeader>
-              <DialogTitle>Pre-Register for Rupiece</DialogTitle>
+              <DialogTitle>Pre-Register Now</DialogTitle>
               <DialogDescription>
-                Be the first to know when we launch. Enter your email below to get notified.
+                Pre-register now to receive Rupiece points to redeem exclusive rewards.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -107,4 +107,3 @@ export function PreRegisterDialog() {
     </Dialog>
   );
 }
-
