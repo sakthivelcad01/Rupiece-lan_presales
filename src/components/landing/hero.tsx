@@ -15,7 +15,7 @@ export function Hero() {
             <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 text-left mb-12">
                 <div className="space-y-6">
                     <div className="mb-8">
-                      <h1 className="font-headline text-5xl font-extrabold tracking-widest text-primary md:text-6xl lg:text-7xl">
+                      <h1 className="font-headline text-5xl font-extrabold text-primary md:text-6xl lg:text-7xl">
                          <Typewriter
                           options={{
                             strings: ['RUPIECE'],
