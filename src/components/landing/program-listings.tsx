@@ -51,13 +51,7 @@ export function ProgramListings() {
   }, []);
 
   const getPrice = (size: number) => {
-    const prices: { [key: number]: number } = {
-        100000: 999,
-        300000: 2999,
-        500000: 4999,
-        1000000: 9999,
-    };
-    return prices[size] || 19999;
+    return size * 0.02 - 1;
   };
 
   const formatCurrency = (amount: number) => {
