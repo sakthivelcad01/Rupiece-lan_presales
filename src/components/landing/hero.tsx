@@ -40,7 +40,7 @@ export function Hero() {
                     width={500}
                     height={400}
                     className="object-contain"
-                    data-ai-hint="trader india map"
+                    data-ai-hint="trader looking at screen"
                   />
                 </div>
             </div>
