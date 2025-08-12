@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ProgramQuiz } from "./program-quiz";
+import TaglineGenerator from "./program-quiz";
 
 export function Header() {
   return (
@@ -39,9 +39,7 @@ export function Header() {
           <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
           </Button>
-          <ProgramQuiz>
-             <Button>Find Your Program</Button>
-          </ProgramQuiz>
+          <TaglineGenerator />
         </div>
       </div>
     </header>
