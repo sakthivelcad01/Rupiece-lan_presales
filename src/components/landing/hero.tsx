@@ -5,13 +5,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import Typewriter from 'typewriter-effect';
-import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
 
-interface HeroProps {
-  onProgramSelect: (programSize: number) => void;
-}
-
-export function Hero({ onProgramSelect }: HeroProps) {
+export function Hero() {
   return (
     <section
       className="relative w-full bg-background"
@@ -39,7 +34,6 @@ export function Hero({ onProgramSelect }: HeroProps) {
                      Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
                   </p>
                   <div className="flex flex-col items-start gap-4 md:flex-row">
-                    <ProgramQuizDialog onProgramSelect={onProgramSelect} />
                     <Button variant="secondary" size="lg" asChild>
                       <Link href="#programs">
                         Explore Programs

@@ -129,7 +129,7 @@ export function ProgramQuizDialog({ onProgramSelect }: ProgramQuizDialogProps) {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button size="lg">Find Your Perfect Program</Button>
+        <Button>Find Your Program</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
