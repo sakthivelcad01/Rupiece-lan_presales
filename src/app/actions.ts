@@ -26,20 +26,24 @@ const preRegisterSchema = z.object({
 });
 
 export async function preRegisterEmail(formData: FormData) {
+    const rawData = {
+        email: formData.get('email'),
+    };
+
+    const validatedFields = preRegisterSchema.safeParse(rawData);
+
+    if (!validatedFields.success) {
+        return { success: false, message: validatedFields.error.errors[0].message };
+    }
+
     try {
-        const parsedData = preRegisterSchema.parse({
-            email: formData.get('email'),
-        });
         await addDoc(collection(firestore, "preregistrations"), {
-            email: parsedData.email,
+            email: validatedFields.data.email,
             createdAt: new Date(),
         });
         return { success: true, message: "You've been successfully pre-registered!" };
     } catch (error) {
-        if (error instanceof z.ZodError) {
-             return { success: false, message: error.errors[0].message };
-        }
         console.error("Error saving pre-registration email:", error);
-        return { success: false, message: "Failed to save email. Please try again." };
+        return { success: false, message: "A server error occurred. Please try again later." };
     }
 }
