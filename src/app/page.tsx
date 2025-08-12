@@ -1,7 +1,6 @@
 import { Header } from "@/components/landing/header";
 import { Hero } from "@/components/landing/hero";
 import Features from "@/components/landing/features";
-import TaglineGenerator from "@/components/landing/program-quiz";
 import { ProgramListings } from "@/components/landing/program-listings";
 import { Footer } from "@/components/landing/footer";
 import { WhyUs } from "@/components/landing/why-us";
@@ -16,7 +15,6 @@ export default function Home() {
         <WhyUs />
         <Features />
         <ProgramListings />
-        <TaglineGenerator />
         <Testimonials />
       </main>
       <Footer />
