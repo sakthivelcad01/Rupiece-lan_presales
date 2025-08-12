@@ -5,6 +5,7 @@ import { ProgramListings } from "@/components/landing/program-listings";
 import { Testimonials } from "@/components/landing/testimonials";
 import { AboutUs } from "@/components/landing/about-us";
 import { Cta } from "@/components/landing/cta";
+import { Footer } from "@/components/landing/footer";
 
 
 export default function Home() {

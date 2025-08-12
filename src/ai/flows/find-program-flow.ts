@@ -18,7 +18,7 @@ const FindProgramInputSchema = z.object({
 });
 export type FindProgramInput = z.infer<typeof FindProgramInputSchema>;
 
-export const FindProgramOutputSchema = z.object({
+const FindProgramOutputSchema = z.object({
   recommendation: z
     .number()
     .describe('The recommended account size. Must be one of 100000, 300000, 500000, or 1000000.'),
