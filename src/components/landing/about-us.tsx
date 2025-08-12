@@ -1,3 +1,4 @@
+import { IndianRupee } from "lucide-react";
 
 export function AboutUs() {
   return (
@@ -5,9 +6,12 @@ export function AboutUs() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl">
-              Built for Indian Traders, by Indian Traders
-            </h2>
+            <div className="flex justify-center items-center gap-4 mb-4">
+                <IndianRupee className="h-10 w-10 text-primary" />
+                <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl">
+                Built for Indian Traders, by Indian Traders
+                </h2>
+            </div>
             <p className="mt-4 text-lg text-muted-foreground">
               RUPIECE was founded with a single mission: to empower talented traders in India with the capital and technology they need to succeed. We understand the unique challenges and opportunities of the Indian market because we live and breathe it every day.
             </p>
