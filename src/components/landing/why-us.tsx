@@ -48,7 +48,7 @@ export function WhyUs() {
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <Card key={feature.title} className="flex flex-col items-start text-left p-6 bg-card border shadow-sm hover:shadow-lg transition-all duration-300">
+            <Card key={feature.title} className="flex flex-col items-center text-center p-6 bg-card border shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="mb-4">{feature.icon}</div>
               <CardHeader className="p-0 mb-2">
                 <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>

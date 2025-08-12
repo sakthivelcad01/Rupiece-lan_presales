@@ -21,7 +21,7 @@ export function AboutUs() {
           </div>
           <div className="order-1 flex justify-center md:order-2">
             <Image
-              src="https://placehold.co/600x400.png"
+              src="https://i.postimg.cc/pTqVyXq0/rupee-sign.png"
               alt="Indian Rupee Symbol"
               width={600}
               height={400}
