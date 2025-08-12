@@ -30,7 +30,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <Button asChild>
-            <Link href="/#programs">Pre Register Now</Link>
+            <Link href="/#programs">Find Your Program</Link>
           </Button>
         </div>
       </div>
