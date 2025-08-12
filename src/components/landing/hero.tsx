@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import Typewriter from 'typewriter-effect';
 
 export function Hero() {
   return (
@@ -13,8 +14,14 @@ export function Hero() {
             <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 text-left mb-12">
                 <div className="space-y-6">
                     <div className="mb-8">
-                      <h1 className="font-headline text-6xl font-extrabold tracking-widest text-primary md:text-7xl lg:text-8xl">
-                         RUPIECE
+                      <h1 className="font-headline text-5xl font-extrabold tracking-widest text-primary md:text-6xl lg:text-7xl">
+                         <Typewriter
+                          options={{
+                            strings: ['RUPIECE'],
+                            autoStart: true,
+                            loop: true,
+                          }}
+                        />
                       </h1>
                       <p className="mt-2 text-lg font-semibold text-muted-foreground">exactly what you want!</p>
                     </div>
