@@ -21,12 +21,12 @@ export function AboutUs() {
           </div>
           <div className="order-1 flex justify-center md:order-2">
             <Image
-              src="https://i.postimg.cc/0j3t3fVj/rupee-symbol.png"
+              src="https://placehold.co/600x400.png"
               alt="Indian Rupee Symbol"
-              width={400}
+              width={600}
               height={400}
               className="rounded-lg object-contain"
-              data-ai-hint="rupee symbol abstract"
+              data-ai-hint="rupee symbol"
             />
           </div>
         </div>
