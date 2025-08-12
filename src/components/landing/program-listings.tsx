@@ -39,8 +39,12 @@ const steps = [
   },
 ];
 
-export function ProgramListings() {
-  const [selectedSize, setSelectedSize] = useState(1000000);
+interface ProgramListingsProps {
+  selectedSize: number;
+  setSelectedSize: (size: number) => void;
+}
+
+export function ProgramListings({ selectedSize, setSelectedSize }: ProgramListingsProps) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -64,7 +68,7 @@ export function ProgramListings() {
   };
   
   return (
-    <section id="programs" className="w-full bg-background py-16 md:py-24">
+    <section id="programs" className="w-full bg-background py-16 md:py-24 scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
             <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-4">

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,11 @@ import Image from "next/image";
 import Typewriter from 'typewriter-effect';
 import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
 
-export function Hero() {
+interface HeroProps {
+  onProgramSelect: (programSize: number) => void;
+}
+
+export function Hero({ onProgramSelect }: HeroProps) {
   return (
     <section
       className="relative w-full bg-background"
@@ -34,7 +39,7 @@ export function Hero() {
                      Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
                   </p>
                   <div className="flex flex-col items-start gap-4 md:flex-row">
-                    <ProgramQuizDialog />
+                    <ProgramQuizDialog onProgramSelect={onProgramSelect} />
                     <Button variant="secondary" size="lg" asChild>
                       <Link href="#programs">
                         Explore Programs
@@ -44,12 +49,12 @@ export function Hero() {
                 </div>
                 <div className="relative flex justify-center items-center">
                   <Image
-                    src="https://i.postimg.cc/sfh7BVqN/img-1.png"
-                    alt="Trader with map of India"
-                    width={500}
+                    src="https://i.postimg.cc/pTqVyXq0/rupee-sign.png"
+                    alt="Indian Rupee Symbol"
+                    width={600}
                     height={400}
-                    className="object-contain"
-                    data-ai-hint="trader looking at screen"
+                    className="rounded-lg object-cover"
+                    data-ai-hint="Indian Rupee"
                   />
                 </div>
             </div>

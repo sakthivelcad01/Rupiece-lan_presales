@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -20,7 +21,6 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Loader2, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const quizSchema = z.object({
@@ -37,8 +37,11 @@ const questions = [
   { name: "style", title: "What is your primary trading style?", options: [{ value: "day", label: "Day Trader (Intraday positions)" }, { value: "swing", label: "Swing Trader (Positions held for days/weeks)" }, { value: "scalper", label: "Scalper (High-frequency, small profits)" }] },
 ] as const;
 
+interface ProgramQuizDialogProps {
+  onProgramSelect: (programSize: number) => void;
+}
 
-export function ProgramQuizDialog() {
+export function ProgramQuizDialog({ onProgramSelect }: ProgramQuizDialogProps) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -105,6 +108,13 @@ export function ProgramQuizDialog() {
     }
   };
 
+  const handleGetStarted = () => {
+    if (result?.recommendation) {
+      onProgramSelect(result.recommendation);
+      handleOpenChange(false);
+    }
+  };
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -142,8 +152,8 @@ export function ProgramQuizDialog() {
                 <p className="text-4xl font-bold text-primary my-2">{formatCurrency(result.recommendation!)}</p>
                 <p className="text-muted-foreground mt-4 mb-6">{result.reasoning}</p>
                 <DialogFooter className="flex-col gap-2 w-full">
-                    <Button size="lg" asChild>
-                        <Link href={`#programs`}>Get Started</Link>
+                    <Button size="lg" onClick={handleGetStarted}>
+                        Get Started
                     </Button>
                     <Button size="lg" variant="outline" onClick={resetQuiz}>
                         Retake Quiz
