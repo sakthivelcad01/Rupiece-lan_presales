@@ -1,14 +1,15 @@
+
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    "projectId": "rupiece-38n71",
-    "appId": "1:551200239122:web:651c99de28255b25b5f2cb",
-    "storageBucket": "rupiece-38n71.firebasestorage.app",
-    "apiKey": "AIzaSyDSybfLaId9fk_HeNmnlwXz0ln3S5mEU8k",
-    "authDomain": "rupiece-38n71.firebaseapp.com",
-    "messagingSenderId": "551200239122"
+  apiKey: "AIzaSyBJRtNPUHp3ekcsHOxWd7M2SmD3H2FDdEw",
+  authDomain: "rupiece-ecactly-what-you-want.firebaseapp.com",
+  projectId: "rupiece-ecactly-what-you-want",
+  storageBucket: "rupiece-ecactly-what-you-want.firebasestorage.app",
+  messagingSenderId: "788489947271",
+  appId: "1:788489947271:web:75c3adf0f86fa5555f9022"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
