@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { submitContactForm } from "@/app/actions";
 
-export function ContactForm() {
+export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -25,11 +25,15 @@ export function ContactForm() {
     }
     setIsSubmitting(true);
     try {
-        await submitContactForm({ name, email, message });
-        toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon." });
-        setName("");
-        setEmail("");
-        setMessage("");
+        const result = await submitContactForm({ name, email, message });
+        if (result.success) {
+            toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon." });
+            setName("");
+            setEmail("");
+            setMessage("");
+        } else {
+            throw new Error(result.error);
+        }
     } catch (error) {
         toast({ variant: "destructive", title: "Error", description: "Could not send your message. Please try again." });
     } finally {
