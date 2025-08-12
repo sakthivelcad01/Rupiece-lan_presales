@@ -21,12 +21,6 @@ export function Header() {
           >
             Testimonials
           </Link>
-           <Link
-            href="/#contact"
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
-          >
-            Contact
-          </Link>
           <Link
             href="/rules-faq"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
@@ -35,11 +29,8 @@ export function Header() {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" asChild>
-            <Link href="/login">Login</Link>
-          </Button>
           <Button asChild>
-            <Link href="/#programs">Find Your Program</Link>
+            <Link href="/#programs">Pre Register Now</Link>
           </Button>
         </div>
       </div>
