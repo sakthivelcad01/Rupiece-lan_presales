@@ -14,7 +14,24 @@ export function Header({ onProgramSelect }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-primary">
-          <span className="text-lg tracking-wide">RUPIECE</span>
+          <svg
+            className="h-6 w-auto"
+            viewBox="0 0 160 30"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <text
+              x="0"
+              y="22"
+              fontFamily="Montserrat, sans-serif"
+              fontSize="24"
+              fontWeight="bold"
+              letterSpacing="0.05em"
+            >
+              RUPIECE
+            </text>
+            <rect x="148" y="0" width="8" height="30" />
+          </svg>
         </Link>
         <nav className="hidden items-center gap-6 text-sm md:flex">
           <Link
