@@ -21,26 +21,25 @@ export async function generateTaglinesAction(input: GenerateTaglinesInput) {
   }
 }
 
-const contactFormSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    message: z.string(),
+const preRegisterSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
 });
 
-export async function submitContactForm(formData: FormData) {
+export async function preRegisterEmail(formData: FormData) {
     try {
-        const parsedData = contactFormSchema.parse({
-            name: formData.get('name'),
+        const parsedData = preRegisterSchema.parse({
             email: formData.get('email'),
-            message: formData.get('message'),
         });
-        await addDoc(collection(firestore, "contacts"), {
-            ...parsedData,
+        await addDoc(collection(firestore, "preregistrations"), {
+            email: parsedData.email,
             createdAt: new Date(),
         });
-        return { success: true, message: "Message sent successfully!" };
+        return { success: true, message: "You've been successfully pre-registered!" };
     } catch (error) {
-        console.error("Error submitting contact form:", error);
-        return { success: false, message: "Failed to send message." };
+        if (error instanceof z.ZodError) {
+             return { success: false, message: error.errors[0].message };
+        }
+        console.error("Error saving pre-registration email:", error);
+        return { success: false, message: "Failed to save email. Please try again." };
     }
 }

@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { PreRegisterDialog } from "@/components/landing/pre-register-dialog";
 
 export function Cta() {
   return (
@@ -11,10 +10,9 @@ export function Cta() {
         <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8">
           Your trading future is just a click away. Get funded and start earning.
         </p>
-        <Button asChild size="lg">
-          <Link href="/#programs">Pre Register Now</Link>
-        </Button>
+        <PreRegisterDialog />
       </div>
     </section>
   );
 }
+
