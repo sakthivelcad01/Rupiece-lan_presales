@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <Card className="h-full border-0 shadow-none">
+    <Card className="h-full border bg-background shadow-sm">
       <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
         <p className="text-lg italic text-muted-foreground">"{testimonial.quote}"</p>
         <div className="mt-6 flex items-center gap-4">
@@ -24,7 +24,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="w-full py-16 md:py-24">
+    <section id="testimonials" className="w-full bg-muted py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl">

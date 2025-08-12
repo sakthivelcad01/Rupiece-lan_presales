@@ -6,7 +6,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-primary">
-          <span className="text-lg">RUPIECE</span>
+          <span className="text-lg tracking-widest">RUPIECE</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm md:flex">
           <Link
@@ -21,6 +21,12 @@ export function Header() {
           >
             Testimonials
           </Link>
+           <Link
+            href="/#contact"
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            Contact
+          </Link>
           <Link
             href="/rules-faq"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
@@ -31,6 +37,9 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/#programs">Find Your Program</Link>
           </Button>
         </div>
       </div>

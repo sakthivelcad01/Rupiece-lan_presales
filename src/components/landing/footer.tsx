@@ -6,10 +6,10 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t">
+    <footer className="w-full border-t bg-muted">
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 py-8 sm:flex-row">
         <Link href="/" className="flex items-center gap-2 font-bold text-primary">
-          <span className="text-lg">RUPIECE</span>
+          <span className="text-lg tracking-widest">RUPIECE</span>
         </Link>
         <p className="text-sm text-muted-foreground">
           &copy; {year} RUPIECE Inc. All rights reserved.
