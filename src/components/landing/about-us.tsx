@@ -20,14 +20,24 @@ export function AboutUs() {
             </p>
           </div>
           <div className="order-1 flex justify-center md:order-2">
-            <Image
-              src="https://placehold.co/600x400.png"
-              alt="Indian Rupee Symbol"
-              width={600}
-              height={400}
-              className="rounded-lg object-contain"
-              data-ai-hint="rupee symbol"
-            />
+            <div className="w-[600px] h-[400px] flex items-center justify-center rounded-lg bg-card p-8">
+               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-full w-full text-primary"
+              >
+                <path d="M6 3h12" />
+                <path d="M6 8h12" />
+                <path d="m6 13 8.5 8" />
+                <path d="M6 13h3" />
+                <path d="M13 13h4.5" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
