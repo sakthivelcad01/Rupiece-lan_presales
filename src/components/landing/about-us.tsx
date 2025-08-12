@@ -1,11 +1,10 @@
-import Image from "next/image";
 
 export function AboutUs() {
   return (
     <section id="about" className="w-full bg-muted py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div>
+        <div className="grid grid-cols-1 items-center gap-12">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl">
               Built for Indian Traders, by Indian Traders
             </h2>
@@ -18,16 +17,6 @@ export function AboutUs() {
              <p className="mt-4 text-lg text-muted-foreground">
               We are more than just a prop firm; we are a community dedicated to fostering growth, discipline, and success. Join us and become part of a new era in Indian trading.
             </p>
-          </div>
-          <div className="relative flex justify-center items-center">
-            <Image
-              src="https://placehold.co/600x400.png"
-              alt="Our Team"
-              width={500}
-              height={400}
-              className="rounded-lg object-cover shadow-lg"
-              data-ai-hint="team collaboration office"
-            />
           </div>
         </div>
       </div>

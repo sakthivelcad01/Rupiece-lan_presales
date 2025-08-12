@@ -35,7 +35,7 @@ export function Hero() {
                 </div>
                 <div className="relative flex justify-center items-center">
                   <Image
-                    src="https://i.postimg.cc/d1ff1Xw4/hero-image.png"
+                    src="https://i.postimg.cc/sfh7BVqN/img-1.png"
                     alt="Trader with map of India"
                     width={500}
                     height={400}
