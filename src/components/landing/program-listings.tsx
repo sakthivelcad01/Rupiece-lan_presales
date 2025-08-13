@@ -23,19 +23,19 @@ const steps = [
     name: "Phase 1",
     profitTarget: "20%",
     maxLoss: "15%",
-    minDays: "0",
+    minDays: "∞",
   },
   {
     name: "Phase 2",
     profitTarget: "15%",
     maxLoss: "15%",
-    minDays: "0",
+    minDays: "∞",
   },
   {
     name: "Master",
     profitTarget: "-",
     maxLoss: "15%",
-    minDays: "0",
+    minDays: "∞",
   },
 ];
 
