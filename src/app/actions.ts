@@ -1,3 +1,4 @@
+
 'use server';
 
 import {
@@ -9,7 +10,7 @@ import {
   type FindProgramInput,
 } from '@/ai/flows/find-program-flow';
 import { firestore } from '@/lib/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { z } from 'zod';
 
 export async function generateTaglinesAction(input: GenerateTaglinesInput) {
@@ -55,7 +56,15 @@ export async function preRegisterEmail(formData: FormData) {
     }
 
     try {
-        await addDoc(collection(firestore, "preregistrations"), {
+        const preregCollection = collection(firestore, "preregistrations");
+        const q = query(preregCollection, where("email", "==", validatedFields.data.email));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            return { success: false, message: "This email has already been registered." };
+        }
+
+        await addDoc(preregCollection, {
             email: validatedFields.data.email,
             createdAt: new Date(),
         });
