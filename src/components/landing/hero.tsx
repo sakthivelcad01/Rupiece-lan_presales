@@ -34,7 +34,7 @@ export function Hero() {
                      Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
                   </p>
                   <div className="flex flex-col items-start gap-4 md:flex-row">
-                    <Button variant="secondary" size="lg" asChild>
+                    <Button size="lg" asChild>
                       <Link href="#programs">
                         Explore Programs
                       </Link>
@@ -43,9 +43,9 @@ export function Hero() {
                 </div>
                 <div className="relative flex justify-center items-center">
                   <Image
-                    src="https://i.postimg.cc/FzhXcFB5/img-3.png"
+                    src="https://i.postimg.cc/7Pm7tKYc/img-3-removebg-preview.png"
                     alt="Indian Rupee Symbol"
-                    width={600}
+                    width={500}
                     height={400}
                     className="rounded-lg object-cover"
                     data-ai-hint="Indian Rupee"
