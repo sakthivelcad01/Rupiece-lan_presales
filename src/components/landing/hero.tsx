@@ -9,7 +9,7 @@ import Typewriter from 'typewriter-effect';
 export function Hero() {
   return (
     <section
-      className="relative w-full bg-background"
+      className="relative w-full bg-muted"
     >
         <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 text-left mb-12">
@@ -43,7 +43,7 @@ export function Hero() {
                 </div>
                 <div className="relative flex justify-center items-center">
                   <Image
-                    src="https://i.postimg.cc/pTqVyXq0/rupee-sign.png"
+                    src="https://i.postimg.cc/FzhXcFB5/img-3.png"
                     alt="Indian Rupee Symbol"
                     width={600}
                     height={400}
