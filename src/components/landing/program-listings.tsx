@@ -21,13 +21,13 @@ const accountSizes = [
 const steps = [
   {
     name: "Phase 1",
-    profitTarget: "8%",
+    profitTarget: "20%",
     maxLoss: "15%",
     minDays: "0",
   },
   {
     name: "Phase 2",
-    profitTarget: "5%",
+    profitTarget: "15%",
     maxLoss: "15%",
     minDays: "0",
   },
