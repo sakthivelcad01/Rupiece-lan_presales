@@ -15,18 +15,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { preRegisterEmail } from "@/app/actions";
 
 export function PreRegisterDialog() {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { toast } = useToast();
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     const formData = new FormData(event.currentTarget);
     
     const result = await preRegisterEmail(formData);
@@ -34,11 +34,7 @@ export function PreRegisterDialog() {
     if (result.success) {
       setIsSuccess(true);
     } else {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: result.message,
-      });
+      setError(result.message);
     }
 
     setIsSubmitting(false);
@@ -51,6 +47,7 @@ export function PreRegisterDialog() {
       setTimeout(() => {
         setIsSuccess(false);
         setIsSubmitting(false);
+        setError(null);
       }, 300);
     }
   };
@@ -94,6 +91,11 @@ export function PreRegisterDialog() {
                   required
                 />
               </div>
+               {error && (
+                <div className="col-span-4 text-center text-sm font-medium text-destructive">
+                  {error}
+                </div>
+              )}
             </div>
             <DialogFooter>
               <Button type="submit" disabled={isSubmitting}>
