@@ -24,12 +24,6 @@ export function Header({ onProgramSelect }: HeaderProps) {
             Programs
           </Link>
           <Link
-            href="/#testimonials"
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
-          >
-            Testimonials
-          </Link>
-          <Link
             href="/rules-faq"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
