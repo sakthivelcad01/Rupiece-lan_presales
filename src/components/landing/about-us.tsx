@@ -21,12 +21,12 @@ export function AboutUs() {
           </div>
           <div className="order-1 flex justify-center md:order-2">
             <Image
-              src="https://i.postimg.cc/pTqVyXq0/rupee-sign.png"
-              alt="Indian Rupee Symbol"
-              width={600}
-              height={400}
-              className="rounded-lg object-cover"
-              data-ai-hint="Indian Rupee"
+              src="https://placehold.co/256x256.png"
+              alt="Placeholder image"
+              width={256}
+              height={256}
+              className="rounded-full object-cover"
+              data-ai-hint="traders community"
             />
           </div>
         </div>
