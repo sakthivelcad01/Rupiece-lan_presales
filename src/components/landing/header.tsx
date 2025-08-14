@@ -17,6 +17,12 @@ export function Header({ onProgramSelect }: HeaderProps) {
           RUPIECE
         </Link>
         <nav className="hidden items-center gap-6 text-sm md:flex">
+           <Link
+            href="/"
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            Home
+          </Link>
           <Link
             href="/#programs"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
