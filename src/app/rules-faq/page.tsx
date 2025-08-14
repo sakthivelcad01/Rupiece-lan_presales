@@ -85,7 +85,7 @@ export default function RulesFaqPage() {
                 </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="grid grid-cols-1 gap-y-6">
                 {tradingRules.map(rule => (
                   <div key={rule.title}>
                     <h3 className="font-semibold text-lg mb-1">{rule.title}</h3>
