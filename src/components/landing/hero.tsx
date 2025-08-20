@@ -30,23 +30,23 @@ export function Hero() {
               />
             </h1>
             <p className="mt-1 text-xl font-semibold text-muted-foreground">exactly what you want!</p>
-          </div><br /><br />
-          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2 text-left mb-12">
+          </div>
+          <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2 text-left mb-12 mt-8">
               <div className="space-y-2">
                 <p className="max-w-xl text-lg md:text-xl">
                   Stop guessing. Start winning. RUPIECE matches you with the perfect
                   proprietary trading program based on your unique style and goals.
-                </p><br />
-                  <p className="max-w-xl text-lg md:text-xl">
+                </p>
+                <p className="max-w-xl text-lg md:text-xl pt-4">
                     Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
-                  </p><br /><br />
-                <div className="mt-5 flex flex-col items-start md:flex-row mt-6">
+                </p>
+                <div className="pt-6 flex flex-col items-start md:flex-row">
                   <Link href="#programs">
                     <Button size="lg" className="w-full md:w-auto">
                       Explore Programs
                     </Button>
                   </Link>
-                </div><br />
+                </div>
               </div>
               <div className="relative flex justify-center items-center gap-4">
                 <Image
@@ -59,9 +59,9 @@ export function Hero() {
                 />
               </div>
           </div>
-            <h1 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl">
+            <h1 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
               Trade Smart, Get Funded, Grow Big
-            </h1><br />
+            </h1>
             <p className="text-center text-xl font-semibold text-muted-foreground mt-2">we take your loss, you keep your profit</p>
         </ScrollReveal>
       </div>
