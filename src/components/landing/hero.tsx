@@ -36,7 +36,7 @@ export function Hero() {
                 <p className="max-w-xl text-lg md:text-xl">
                   Stop guessing. Start winning. RUPIECE matches you with the perfect
                   proprietary trading program based on your unique style and goals.
-                </p>
+                </p><br/>
                 <p className="max-w-xl text-lg md:text-xl pt-4">
                     Prove your trading skills in our evaluation program and get access to our capital to trade NSE & BSE markets. Keep the majority of your profits — trade bigger, grow faster, without risking your own money.
                 </p>
@@ -51,17 +51,17 @@ export function Hero() {
               <div className="relative flex justify-center items-center gap-4">
                 <Image
                   src="https://i.postimg.cc/pLQdZQws/Forex.png"
-                  alt="Successful trader"
+                  alt="A focused trader analyzing stock market charts on a multi-monitor setup."
                   width={400}
                   height={500}
                   className="rounded-lg object-cover"
                   data-ai-hint="trader looking at screen"
                 />
               </div>
-          </div>
-            <h1 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
+          </div><br/>
+            <h2 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
               Trade Smart, Get Funded, Grow Big
-            </h1>
+            </h2>
             <p className="text-center text-xl font-semibold text-muted-foreground mt-2">we take your loss, you keep your profit</p>
         </ScrollReveal>
       </div>

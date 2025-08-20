@@ -4,8 +4,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rupiece",
-  description: "Crafting Your Brand's Voice, One Tagline at a Time.",
+  title: "Rupiece | Get Funded to Trade Indian Markets",
+  description: "Get funded to trade Indian markets (NSE & BSE) with Rupiece. Pass our evaluation, trade our capital, and keep up to 80% of the profits. Start your professional trading journey today.",
+  keywords: "proprietary trading, prop firm india, get funded, nse, bse, stock trading, day trading, swing trading, rupiece",
 };
 
 export default function RootLayout({

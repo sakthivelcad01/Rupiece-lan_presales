@@ -31,7 +31,7 @@ export function BuiltForTraders() {
           </div>
           <div className="flex justify-center items-center">
             <div className="p-8 bg-primary/10 rounded-full">
-                <IndianRupee className="h-32 w-32 text-primary" />
+                <IndianRupee className="h-32 w-32 text-primary" aria-label="Indian Rupee Symbol" />
             </div>
           </div>
         </div>
