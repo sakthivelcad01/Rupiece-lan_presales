@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface HeaderProps {
   onProgramSelect: (programSize: number) => void;
@@ -40,6 +41,7 @@ export function Header({ onProgramSelect }: HeaderProps) {
           <ProgramQuizDialog onProgramSelect={onProgramSelect}>
              <Button>Find Your Program</Button>
           </ProgramQuizDialog>
+          <ThemeToggle />
         </div>
       </div>
     </header>
