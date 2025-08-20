@@ -38,10 +38,10 @@ export function Header({ onProgramSelect }: HeaderProps) {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <ProgramQuizDialog onProgramSelect={onProgramSelect}>
              <Button>Find Your Program</Button>
           </ProgramQuizDialog>
-          <ThemeToggle />
         </div>
       </div>
     </header>
