@@ -61,7 +61,7 @@ export function Hero() {
           </div><br/>
             <h1 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
               Trade Smart, Get Funded, Grow Big
-            </h1><br/>
+            </h1><br/><br />
             <p className="text-center text-xl font-semibold text-muted-foreground mt-2">we take your loss, you keep your profit</p>
             <br/>
         </ScrollReveal>
