@@ -37,7 +37,9 @@ export function Header({ onProgramSelect }: HeaderProps) {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <ProgramQuizDialog onProgramSelect={onProgramSelect} />
+          <ProgramQuizDialog onProgramSelect={onProgramSelect}>
+             <Button>Find Your Program</Button>
+          </ProgramQuizDialog>
         </div>
       </div>
     </header>
