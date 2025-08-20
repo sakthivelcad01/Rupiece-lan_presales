@@ -51,7 +51,7 @@ export function Hero() {
               <div className="relative flex justify-center items-center gap-4">
                 <Image
                   src="https://i.postimg.cc/pLQdZQws/Forex.png"
-                  alt="A focused trader analyzing stock market charts on a multi-monitor setup."
+                  alt="Successful trader"
                   width={400}
                   height={500}
                   className="rounded-lg object-cover"
@@ -59,10 +59,11 @@ export function Hero() {
                 />
               </div>
           </div><br/>
-            <h2 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
+            <h1 className="text-center font-headline text-4xl font-extrabold tracking-tighter md:text-5xl lg:text-6xl mt-12">
               Trade Smart, Get Funded, Grow Big
-            </h2>
+            </h1><br/>
             <p className="text-center text-xl font-semibold text-muted-foreground mt-2">we take your loss, you keep your profit</p>
+            <br/>
         </ScrollReveal>
       </div>
     </section>
