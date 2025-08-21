@@ -17,8 +17,13 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { enterGiveawayAction } from "@/app/actions";
 
-export function GiveawayEntryDialog({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(false);
+interface GiveawayEntryDialogProps {
+  children: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export function GiveawayEntryDialog({ children, open, onOpenChange }: GiveawayEntryDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +46,9 @@ export function GiveawayEntryDialog({ children }: { children: ReactNode }) {
   };
 
   const handleOpenChange = (isOpen: boolean) => {
-    setOpen(isOpen);
+    if (onOpenChange) {
+      onOpenChange(isOpen);
+    }
     // Reset state when dialog is closed
     if (!isOpen) {
       setTimeout(() => {
