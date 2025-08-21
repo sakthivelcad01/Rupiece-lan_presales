@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
@@ -35,7 +34,7 @@ export function GiveawayDialog() {
       <AlertDialogContent className="bg-card text-card-foreground border-border max-w-md p-8 text-center shadow-2xl">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-3xl font-extrabold tracking-tight md:text-4xl">
-            Do You Want A Chance To Win A <span className="text-amber-400">$100K Account?</span>
+            Do You Want A Chance To Win A <span className="text-amber-400">₹100K Account?</span>
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="flex flex-col gap-4 mt-6">
@@ -45,7 +44,7 @@ export function GiveawayDialog() {
               className="w-full bg-amber-400 text-black hover:bg-amber-500 font-bold text-lg py-6"
               onClick={handleClose}
             >
-              ENTER $100K GIVEAWAY
+              ENTER ₹100K GIVEAWAY
             </Button>
           </PreRegisterDialog>
           <Button
