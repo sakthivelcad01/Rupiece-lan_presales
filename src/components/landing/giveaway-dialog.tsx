@@ -42,13 +42,13 @@ export function GiveawayDialog() {
         <AlertDialogContent className="bg-card text-card-foreground border-border max-w-md p-8 text-center shadow-2xl">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-3xl font-extrabold tracking-tight md:text-4xl">
-              Do You Want A Chance To Win A <span className="text-amber-400">₹100K Account?</span>
+              Do You Want A Chance To Win A <span className="text-primary">₹100K Account?</span>
             </AlertDialogTitle>
           </AlertDialogHeader>
           <div className="flex flex-col gap-4 mt-6">
               <Button
                 size="lg"
-                className="w-full bg-amber-400 text-black hover:bg-amber-500 font-bold text-lg py-6"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg py-6"
                 onClick={handleEnterClick}
               >
                 ENTER ₹100K GIVEAWAY
@@ -64,7 +64,7 @@ export function GiveawayDialog() {
           </div>
         </AlertDialogContent>
       </AlertDialog>
-      <GiveawayEntryDialog open={entryDialogOpen} onOpenchange={setEntryDialogOpen}>
+      <GiveawayEntryDialog open={entryDialogOpen} onOpenChange={setEntryDialogOpen}>
         <span />
       </GiveawayEntryDialog>
     </>
