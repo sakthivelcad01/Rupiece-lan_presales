@@ -16,11 +16,12 @@ export function GiveawayDialog() {
   const [entryDialogOpen, setEntryDialogOpen] = useState(false);
 
   useEffect(() => {
-    const hasSeenPopup = localStorage.getItem("giveawayPopupShown");
+    // We use a unique key to avoid conflicts with previous versions
+    const hasSeenPopup = localStorage.getItem("giveawayPopupShown_v1");
     if (!hasSeenPopup) {
       const timer = setTimeout(() => {
         setIsOpen(true);
-        localStorage.setItem("giveawayPopupShown", "true");
+        localStorage.setItem("giveawayPopupShown_v1", "true");
       }, 1000); // Show popup after 1 second delay
       return () => clearTimeout(timer);
     }
@@ -63,7 +64,7 @@ export function GiveawayDialog() {
           </div>
         </AlertDialogContent>
       </AlertDialog>
-      <GiveawayEntryDialog open={entryDialogOpen} onOpenChange={setEntryDialogOpen}>
+      <GiveawayEntryDialog open={entryDialogOpen} onOpenchange={setEntryDialogOpen}>
         <span />
       </GiveawayEntryDialog>
     </>

@@ -55,15 +55,10 @@ const faqs = [
 
 
 export default function RulesFaqPage() {
-  const handleProgramSelect = (programSize: number) => {
-    // This page doesn't have the program listings, so we might want to redirect or just do nothing.
-    // For now, let's just log it.
-    console.log("Program selected:", programSize);
-  };
   
   return (
     <div className="flex min-h-[100dvh] flex-col bg-muted">
-      <Header onProgramSelect={handleProgramSelect} />
+      <Header onProgramSelect={() => {}} />
       <main className="flex-1 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
