@@ -74,3 +74,38 @@ export async function enterGiveawayAction(formData: FormData) {
         return { success: false, message: "A server error occurred. Please try again later." };
     }
 }
+
+const preRegisterSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
+});
+
+export async function preRegisterAction(formData: FormData) {
+    const rawData = {
+        email: formData.get('email'),
+    };
+
+    const validatedFields = preRegisterSchema.safeParse(rawData);
+
+    if (!validatedFields.success) {
+        return { success: false, message: validatedFields.error.errors[0].message };
+    }
+
+    try {
+        const preRegCollection = collection(firestore, "preregistrations");
+        const q = query(preRegCollection, where("email", "==", validatedFields.data.email));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            return { success: false, message: "This email has already been pre-registered." };
+        }
+
+        await addDoc(preRegCollection, {
+            email: validatedFields.data.email,
+            createdAt: new Date(),
+        });
+        return { success: true, message: "You've successfully pre-registered. We'll notify you on launch!" };
+    } catch (error) {
+        console.error("Error saving pre-registration:", error);
+        return { success: false, message: "A server error occurred. Please try again later." };
+    }
+}

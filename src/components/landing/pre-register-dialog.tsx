@@ -1,0 +1,118 @@
+
+"use client";
+
+import { useState, type ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { preRegisterAction } from "@/app/actions";
+
+interface PreRegisterDialogProps {
+  children: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export function PreRegisterDialog({ children, open, onOpenChange }: PreRegisterDialogProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    const formData = new FormData(event.currentTarget);
+    
+    const result = await preRegisterAction(formData);
+
+    if (result.success) {
+      setIsSuccess(true);
+    } else {
+      setError(result.message);
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(isOpen);
+    }
+    // Reset state when dialog is closed
+    if (!isOpen) {
+      setTimeout(() => {
+        setIsSuccess(false);
+        setIsSubmitting(false);
+        setError(null);
+      }, 300);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        {isSuccess ? (
+          <div className="flex flex-col items-center justify-center p-8 text-center">
+            <CheckCircle2 className="w-16 h-16 text-green-500 mb-4 animate-in zoom-in-50" />
+            <DialogTitle className="text-2xl font-bold mb-2">Pre-Registration Successful!</DialogTitle>
+            <DialogDescription>
+              You're on the list! We'll notify you by email as soon as we launch.
+            </DialogDescription>
+            <DialogFooter className="mt-6">
+                <Button onClick={() => handleOpenChange(false)}>Close</Button>
+            </DialogFooter>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <DialogHeader>
+              <DialogTitle>Pre-Register for Early Access</DialogTitle>
+              <DialogDescription>
+                Enter your email to be the first to know when we launch and get exclusive early bird offers.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  className="col-span-3"
+                  required
+                />
+              </div>
+               {error && (
+                <div className="col-span-4 text-center text-sm font-medium text-destructive">
+                  {error}
+                </div>
+              )}
+            </div>
+            <DialogFooter>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Pre-Register
+              </Button>
+            </DialogFooter>
+          </form>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
