@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,9 +15,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { preRegisterEmail } from "@/app/actions";
+import { enterGiveawayAction } from "@/app/actions";
 
-export function PreRegisterDialog() {
+export function GiveawayEntryDialog({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -29,7 +29,7 @@ export function PreRegisterDialog() {
     setError(null);
     const formData = new FormData(event.currentTarget);
     
-    const result = await preRegisterEmail(formData);
+    const result = await enterGiveawayAction(formData);
 
     if (result.success) {
       setIsSuccess(true);
@@ -55,15 +55,15 @@ export function PreRegisterDialog() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button size="lg">Pre Register Now</Button>
+        {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         {isSuccess ? (
           <div className="flex flex-col items-center justify-center p-8 text-center">
             <CheckCircle2 className="w-16 h-16 text-green-500 mb-4 animate-in zoom-in-50" />
-            <DialogTitle className="text-2xl font-bold mb-2">Successfully Registered!</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-2">Giveaway Entered!</DialogTitle>
             <DialogDescription>
-              Thank you! We'll notify you as soon as we launch.
+              You've successfully been entered into the giveaway. Good luck! We'll notify winners by email.
             </DialogDescription>
             <DialogFooter className="mt-6">
                 <Button onClick={() => handleOpenChange(false)}>Close</Button>
@@ -72,9 +72,9 @@ export function PreRegisterDialog() {
         ) : (
           <form onSubmit={handleSubmit}>
             <DialogHeader>
-              <DialogTitle>Pre-Register Now</DialogTitle>
+              <DialogTitle>Enter Monthly Giveaway</DialogTitle>
               <DialogDescription>
-                Pre-register now to receive Rupiece points to redeem exclusive rewards.
+                Enter your email below to enter this month's giveaway for a free trading account.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -100,7 +100,7 @@ export function PreRegisterDialog() {
             <DialogFooter>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Confirm
+                Enter Giveaway
               </Button>
             </DialogFooter>
           </form>

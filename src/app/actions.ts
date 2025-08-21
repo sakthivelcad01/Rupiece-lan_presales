@@ -40,37 +40,37 @@ export async function findProgramAction(input: FindProgramInput) {
   }
 }
 
-const preRegisterSchema = z.object({
+const giveawayEntrySchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
 });
 
-export async function preRegisterEmail(formData: FormData) {
+export async function enterGiveawayAction(formData: FormData) {
     const rawData = {
         email: formData.get('email'),
     };
 
-    const validatedFields = preRegisterSchema.safeParse(rawData);
+    const validatedFields = giveawayEntrySchema.safeParse(rawData);
 
     if (!validatedFields.success) {
         return { success: false, message: validatedFields.error.errors[0].message };
     }
 
     try {
-        const preregCollection = collection(firestore, "preregistrations");
-        const q = query(preregCollection, where("email", "==", validatedFields.data.email));
+        const giveawayCollection = collection(firestore, "giveaway_entries");
+        const q = query(giveawayCollection, where("email", "==", validatedFields.data.email));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-            return { success: false, message: "This email has already been registered." };
+            return { success: false, message: "This email has already been entered in the giveaway." };
         }
 
-        await addDoc(preregCollection, {
+        await addDoc(giveawayCollection, {
             email: validatedFields.data.email,
             createdAt: new Date(),
         });
-        return { success: true, message: "You've been successfully pre-registered!" };
+        return { success: true, message: "You've successfully entered the giveaway. Good luck!" };
     } catch (error) {
-        console.error("Error saving pre-registration email:", error);
+        console.error("Error saving giveaway entry:", error);
         return { success: false, message: "A server error occurred. Please try again later." };
     }
 }

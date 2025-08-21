@@ -1,4 +1,4 @@
-import { PreRegisterDialog } from "@/components/landing/pre-register-dialog";
+import { GiveawayEntryDialog } from "@/components/landing/giveaway-entry-dialog";
 
 export function Cta() {
   return (
@@ -10,9 +10,12 @@ export function Cta() {
         <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8">
           Your trading future is just a click away. Get funded and start earning.
         </p>
-        <PreRegisterDialog />
+        <GiveawayEntryDialog>
+            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
+                Enter Monthly Giveaway
+            </button>
+        </GiveawayEntryDialog>
       </div>
     </section>
   );
 }
-

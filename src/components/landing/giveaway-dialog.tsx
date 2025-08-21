@@ -9,7 +9,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { PreRegisterDialog } from "@/components/landing/pre-register-dialog";
+import { GiveawayEntryDialog } from "@/components/landing/giveaway-entry-dialog";
 
 export function GiveawayDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ export function GiveawayDialog() {
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="flex flex-col gap-4 mt-6">
-          <PreRegisterDialog>
+          <GiveawayEntryDialog>
             <Button
               size="lg"
               className="w-full bg-amber-400 text-black hover:bg-amber-500 font-bold text-lg py-6"
@@ -46,7 +46,7 @@ export function GiveawayDialog() {
             >
               ENTER ₹100K GIVEAWAY
             </Button>
-          </PreRegisterDialog>
+          </GiveawayEntryDialog>
           <Button
             variant="link"
             size="lg"
