@@ -133,7 +133,7 @@ export async function savePurchaseAction(data: {
     }
 
     try {
-        const purchasesCollection = collection(firestore, "purchases");
+        const purchasesCollection = collection(firestore, "pre_sales");
         await addDoc(purchasesCollection, {
             ...validatedFields.data,
             purchasedAt: serverTimestamp(),
