@@ -107,7 +107,12 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
               At Rupiece, we’re changing the game for Indian traders. No more risking your life savings. Here’s the journey from trader to funded professional
             </p>
         </div>
-        <Card className="w-full max-w-5xl mx-auto shadow-lg">
+        <Card className="w-full max-w-5xl mx-auto shadow-lg relative overflow-hidden">
+          <div className="absolute top-0 right-0 h-20 w-20">
+            <div className="absolute transform rotate-45 bg-destructive text-center text-destructive-foreground font-semibold py-1 right-[-40px] top-[32px] w-[170px]">
+              PRE-SALES
+            </div>
+          </div>
           <CardContent className="p-6 md:p-8">
             <div className="bg-secondary/50 rounded-lg p-4 mb-6">
                 <div className="grid md:grid-cols-2 gap-4 text-center">
