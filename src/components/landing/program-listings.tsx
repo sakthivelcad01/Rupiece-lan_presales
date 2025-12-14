@@ -61,11 +61,9 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [isRazorpayReady, setIsRazorpayReady] = useState(false);
 
   useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-    if (key) {
+    // This effect simply checks if the Razorpay script has loaded.
+    if (window.Razorpay) {
       setIsRazorpayReady(true);
-    } else {
-        console.error("Razorpay Key ID is not set in environment variables.");
     }
   }, []);
 
@@ -272,7 +270,8 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                 </div>
                 <Dialog open={isPaymentDialogOpen} onOpenChange={setIsPaymentDialogOpen}>
                     <DialogTrigger asChild>
-                        <Button size="lg" className="w-full md:w-auto">
+                        <Button size="lg" className="w-full md:w-auto" disabled={!isRazorpayReady}>
+                           {!isRazorpayReady && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                             Buy Now
                         </Button>
                     </DialogTrigger>
