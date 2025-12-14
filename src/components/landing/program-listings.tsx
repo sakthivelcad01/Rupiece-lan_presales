@@ -93,7 +93,8 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   };
   
   const handlePayment = async (email: string) => {
-    if (!isRazorpayReady) {
+    if (!process.env.RAZORPAY_KEY_ID) {
+      console.error("Razorpay Key ID is not set.");
       toast({
         variant: "destructive",
         title: "Configuration Error",
@@ -104,7 +105,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     const price = getPrice(selectedSize);
 
     const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, 
+        key: process.env.RAZORPAY_KEY_ID, 
         amount: price * 100, // amount in the smallest currency unit
         currency: "INR",
         name: "Rupiece",
@@ -315,3 +316,5 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     </section>
   );
 }
+
+    
