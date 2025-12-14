@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { CheckCircle, HelpCircle, Loader2 } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle, HelpCircle } from "lucide-react";
 import { auth } from "@/lib/firebase";
 import type { User } from "firebase/auth";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
@@ -58,14 +57,6 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
   const [paymentEmail, setPaymentEmail] = useState("");
   const { toast } = useToast();
-  const [isRazorpayReady, setIsRazorpayReady] = useState(false);
-
-  useEffect(() => {
-    // This effect simply checks if the Razorpay script has loaded.
-    if (window.Razorpay) {
-      setIsRazorpayReady(true);
-    }
-  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -92,7 +83,6 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   
   const handlePayment = async (email: string) => {
     if (!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID) {
-      console.error("Razorpay Key ID is not set.");
       toast({
         variant: "destructive",
         title: "Configuration Error",
@@ -100,6 +90,16 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
       });
       return;
     }
+
+    if (!window.Razorpay) {
+        toast({
+            variant: "destructive",
+            title: "Payment Error",
+            description: "Razorpay script has not loaded. Please check your internet connection and try again.",
+        });
+        return;
+    }
+
     const price = getPrice(selectedSize);
 
     const options = {
@@ -270,8 +270,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                 </div>
                 <Dialog open={isPaymentDialogOpen} onOpenChange={setIsPaymentDialogOpen}>
                     <DialogTrigger asChild>
-                        <Button size="lg" className="w-full md:w-auto" disabled={!isRazorpayReady}>
-                           {!isRazorpayReady && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        <Button size="lg" className="w-full md:w-auto">
                             Buy Now
                         </Button>
                     </DialogTrigger>
