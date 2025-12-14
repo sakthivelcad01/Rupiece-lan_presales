@@ -10,7 +10,7 @@ import {
   type FindProgramInput,
 } from '@/ai/flows/find-program-flow';
 import { firestore } from '@/lib/firebase';
-import { addDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { addDoc, collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
 import { z } from 'zod';
 
 export async function generateTaglinesAction(input: GenerateTaglinesInput) {
@@ -107,5 +107,40 @@ export async function preRegisterAction(formData: FormData) {
     } catch (error) {
         console.error("Error saving pre-registration:", error);
         return { success: false, message: "A server error occurred. Please try again later." };
+    }
+}
+
+const purchaseSchema = z.object({
+    email: z.string().email(),
+    programSize: z.number(),
+    price: z.number(),
+    paymentId: z.string(),
+    userId: z.string().optional(),
+});
+
+export async function savePurchaseAction(data: {
+    email: string;
+    programSize: number;
+    price: number;
+    paymentId: string;
+    userId?: string;
+}) {
+    const validatedFields = purchaseSchema.safeParse(data);
+
+    if (!validatedFields.success) {
+        console.error("Purchase validation failed:", validatedFields.error);
+        return { success: false, message: "Invalid purchase data." };
+    }
+
+    try {
+        const purchasesCollection = collection(firestore, "purchases");
+        await addDoc(purchasesCollection, {
+            ...validatedFields.data,
+            purchasedAt: serverTimestamp(),
+        });
+        return { success: true, message: "Purchase recorded successfully." };
+    } catch (error) {
+        console.error("Error saving purchase:", error);
+        return { success: false, message: "A server error occurred while saving the purchase." };
     }
 }

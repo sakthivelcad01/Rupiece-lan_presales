@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { savePurchaseAction } from "@/app/actions";
+import { useToast } from "@/hooks/use-toast";
 
 const steps = [
   {
@@ -55,6 +57,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [user, setUser] = useState<User | null>(null);
   const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
   const [paymentEmail, setPaymentEmail] = useState("");
+  const { toast } = useToast();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -89,9 +92,31 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
         name: "Rupiece",
         description: `Purchase of ${formatCurrency(selectedSize)} Challenge`,
         image: "/logo.png", // Optional
-        handler: function (response: any) {
-            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+        handler: async function (response: any) {
+            // alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
             // Here you would typically verify the payment on your server
+            const purchaseData = {
+              email: email,
+              programSize: selectedSize,
+              price: price,
+              paymentId: response.razorpay_payment_id,
+              userId: user?.uid,
+            };
+
+            const result = await savePurchaseAction(purchaseData);
+
+            if (result.success) {
+              toast({
+                title: "Payment Successful!",
+                description: "Your purchase has been recorded. We will be in touch shortly.",
+              });
+            } else {
+               toast({
+                variant: "destructive",
+                title: "Save Failed",
+                description: result.message || "Could not save your purchase. Please contact support.",
+              });
+            }
             setIsPaymentDialogOpen(false);
         },
         prefill: {
