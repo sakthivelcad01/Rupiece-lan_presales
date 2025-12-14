@@ -34,6 +34,12 @@ const steps = [
   },
 ];
 
+declare global {
+    interface Window {
+        Razorpay: any;
+    }
+}
+
 export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [user, setUser] = useState<User | null>(null);
 
@@ -57,6 +63,41 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     }).format(amount);
   };
   
+  const handlePayment = async () => {
+    const price = getPrice(selectedSize);
+
+    const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Replace with your key
+        amount: price * 100, // amount in the smallest currency unit
+        currency: "INR",
+        name: "Rupiece",
+        description: `Purchase of ${formatCurrency(selectedSize)} Challenge`,
+        image: "/logo.png", // Optional
+        handler: function (response: any) {
+            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+            // Here you would typically verify the payment on your server
+        },
+        prefill: {
+            name: user?.displayName || "Trading Enthusiast",
+            email: user?.email || "",
+            contact: "",
+        },
+        notes: {
+            address: "Rupiece Corporate Office",
+            program_size: selectedSize,
+        },
+        theme: {
+            color: "#3399cc"
+        }
+    };
+    
+    const rzp1 = new window.Razorpay(options);
+    rzp1.on('payment.failed', function (response: any){
+        alert(`Payment failed! Error: ${response.error.description}`);
+    });
+    rzp1.open();
+  }
+
   return (
     <section id="programs" className="w-full bg-accent py-16 md:py-24">
       <ScrollReveal className="container mx-auto px-4">
@@ -150,6 +191,9 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                     <p className="text-muted-foreground">Price:</p>
                     <p className="text-4xl font-bold">{formatCurrency(getPrice(selectedSize))}</p>
                 </div>
+                <Button size="lg" className="w-full md:w-auto" onClick={handlePayment}>
+                  Buy Now
+                </Button>
             </div>
           </CardContent>
         </Card>
