@@ -85,16 +85,24 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   const handlePayment = async (email: string) => {
     const price = getPrice(selectedSize);
 
+    if (!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID) {
+      console.error("Razorpay Key ID is not set.");
+      toast({
+        variant: "destructive",
+        title: "Configuration Error",
+        description: "Razorpay is not configured. Please contact support.",
+      });
+      return;
+    }
+
     const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Replace with your key
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Using environment variable
         amount: price * 100, // amount in the smallest currency unit
         currency: "INR",
         name: "Rupiece",
         description: `Purchase of ${formatCurrency(selectedSize)} Challenge`,
         image: "/logo.png", // Optional
         handler: async function (response: any) {
-            // alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-            // Here you would typically verify the payment on your server
             const purchaseData = {
               email: email,
               programSize: selectedSize,
@@ -140,7 +148,11 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     
     const rzp1 = new window.Razorpay(options);
     rzp1.on('payment.failed', function (response: any){
-        alert(`Payment failed! Error: ${response.error.description}`);
+        toast({
+            variant: "destructive",
+            title: "Payment Failed",
+            description: response.error.description || "Your payment could not be processed. Please try again.",
+        });
         setIsPaymentDialogOpen(false);
     });
     rzp1.open();
