@@ -58,6 +58,16 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
   const [paymentEmail, setPaymentEmail] = useState("");
   const { toast } = useToast();
+  const [isRazorpayReady, setIsRazorpayReady] = useState(false);
+
+  useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+    if (key) {
+      setIsRazorpayReady(true);
+    } else {
+        console.error("Razorpay Key ID is not set in environment variables.");
+    }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -83,10 +93,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
   };
   
   const handlePayment = async (email: string) => {
-    const price = getPrice(selectedSize);
-
-    if (!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID) {
-      console.error("Razorpay Key ID is not set.");
+    if (!isRazorpayReady) {
       toast({
         variant: "destructive",
         title: "Configuration Error",
@@ -94,9 +101,10 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
       });
       return;
     }
+    const price = getPrice(selectedSize);
 
     const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Using environment variable
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, 
         amount: price * 100, // amount in the smallest currency unit
         currency: "INR",
         name: "Rupiece",
@@ -307,5 +315,3 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     </section>
   );
 }
-
-    
