@@ -6,12 +6,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { CheckCircle, HelpCircle } from "lucide-react";
+import { CheckCircle, HelpCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { auth } from "@/lib/firebase";
 import type { User } from "firebase/auth";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { accountSizes } from "@/lib/data";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const steps = [
   {
@@ -42,10 +53,15 @@ declare global {
 
 export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
+  const [paymentEmail, setPaymentEmail] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
+      if (currentUser?.email) {
+        setPaymentEmail(currentUser.email);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -63,7 +79,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     }).format(amount);
   };
   
-  const handlePayment = async () => {
+  const handlePayment = async (email: string) => {
     const price = getPrice(selectedSize);
 
     const options = {
@@ -76,11 +92,17 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
         handler: function (response: any) {
             alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
             // Here you would typically verify the payment on your server
+            setIsPaymentDialogOpen(false);
         },
         prefill: {
             name: user?.displayName || "Trading Enthusiast",
-            email: user?.email || "",
+            email: email,
             contact: "",
+        },
+        modal: {
+            ondismiss: function() {
+                setIsPaymentDialogOpen(false);
+            }
         },
         notes: {
             address: "Rupiece Corporate Office",
@@ -94,8 +116,14 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     const rzp1 = new window.Razorpay(options);
     rzp1.on('payment.failed', function (response: any){
         alert(`Payment failed! Error: ${response.error.description}`);
+        setIsPaymentDialogOpen(false);
     });
     rzp1.open();
+  }
+
+  const handleEmailSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      handlePayment(paymentEmail);
   }
 
   return (
@@ -196,9 +224,45 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                     <p className="text-muted-foreground">Price:</p>
                     <p className="text-4xl font-bold">{formatCurrency(getPrice(selectedSize))}</p>
                 </div>
-                <Button size="lg" className="w-full md:w-auto" onClick={handlePayment}>
-                  Buy Now
-                </Button>
+                <Dialog open={isPaymentDialogOpen} onOpenChange={setIsPaymentDialogOpen}>
+                    <DialogTrigger asChild>
+                        <Button size="lg" className="w-full md:w-auto">
+                            Buy Now
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                        <form onSubmit={handleEmailSubmit}>
+                            <DialogHeader>
+                            <DialogTitle>Confirm Your Purchase</DialogTitle>
+                            <DialogDescription>
+                                Please enter your email to proceed with the payment for the {formatCurrency(selectedSize)} challenge.
+                            </DialogDescription>
+                            </DialogHeader>
+                            <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="email" className="text-right">
+                                Email
+                                </Label>
+                                <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="name@example.com"
+                                className="col-span-3"
+                                required
+                                value={paymentEmail}
+                                onChange={(e) => setPaymentEmail(e.target.value)}
+                                />
+                            </div>
+                            </div>
+                            <DialogFooter>
+                            <Button type="submit">
+                                Proceed to Payment
+                            </Button>
+                            </DialogFooter>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             </div>
           </CardContent>
         </Card>
@@ -206,3 +270,5 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     </section>
   );
 }
+
+    
