@@ -1,8 +1,10 @@
 
 declare namespace NodeJS {
   interface ProcessEnv {
-    RAZORPAY_KEY_ID: string;
+    NEXT_PUBLIC_RAZORPAY_KEY_ID: string;
   }
 }
+
+    
 
     
