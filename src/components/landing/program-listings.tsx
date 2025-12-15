@@ -16,20 +16,20 @@ import { accountSizes } from "@/lib/data";
 const steps = [
   {
     name: "Phase 1",
-    profitTarget: "20%",
-    maxLoss: "15%",
+    profitTarget: "10%",
+    maxLoss: "8%",
     minDays: "∞",
   },
   {
     name: "Phase 2",
-    profitTarget: "15%",
-    maxLoss: "15%",
+    profitTarget: "8%",
+    maxLoss: "8%",
     minDays: "∞",
   },
   {
     name: "Master",
     profitTarget: "-",
-    maxLoss: "15%",
+    maxLoss: "8%",
     minDays: "∞",
   },
 ];
