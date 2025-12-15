@@ -2,10 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
 
 interface HeaderProps {
   onProgramSelect: (programSize: number) => void;
@@ -39,12 +36,6 @@ export function Header({ onProgramSelect }: HeaderProps) {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-            <ProgramQuizDialog onProgramSelect={onProgramSelect}>
-                <Button variant="outline" size="sm">
-                    <Sparkles className="mr-2 h-4 w-4" />
-                    Find Your Program
-                </Button>
-            </ProgramQuizDialog>
           <ThemeToggle />
         </div>
       </div>
