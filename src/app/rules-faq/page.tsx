@@ -10,11 +10,11 @@ import { HelpCircle, Newspaper } from "lucide-react";
 const tradingRules = [
     {
         title: "Profit Target",
-        description: "In Phase 1, you need to reach a profit target of 20%. In Phase 2, the profit target is 15%. There is no profit target for Master accounts."
+        description: "In Phase 1, you need to reach a profit target of 10%. In Phase 2, the profit target is 8%. There is no profit target for Master accounts."
     },
     {
         title: "Maximum Overall Loss",
-        description: "For standard challenges, the maximum overall loss is 15% of the initial account balance. For competitions, this limit is extended to 20%."
+        description: "The maximum overall loss is 8% of the initial account balance for all account types."
     },
     {
         title: "Minimum Trading Days",

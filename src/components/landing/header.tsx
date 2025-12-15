@@ -2,8 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ProgramQuizDialog } from "@/components/landing/program-quiz-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 interface HeaderProps {
@@ -39,9 +37,6 @@ export function Header({ onProgramSelect }: HeaderProps) {
         </nav>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <ProgramQuizDialog onProgramSelect={onProgramSelect}>
-             <Button>Find Your Program</Button>
-          </ProgramQuizDialog>
         </div>
       </div>
     </header>
