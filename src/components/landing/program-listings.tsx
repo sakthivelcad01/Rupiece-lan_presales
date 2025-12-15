@@ -54,7 +54,6 @@ declare global {
 
 export function ProgramListings({ selectedSize, setSelectedSize }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
   const [paymentEmail, setPaymentEmail] = useState("");
   const { toast } = useToast();
 
@@ -68,8 +67,12 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     return () => unsubscribe();
   }, []);
 
-  const getPrice = (size: number) => {
+  const getOriginalPrice = (size: number) => {
     return size * 0.02 - 1;
+  };
+
+  const getDiscountedPrice = (size: number) => {
+    return getOriginalPrice(size) * 0.55;
   };
 
   const formatCurrency = (amount: number) => {
@@ -100,7 +103,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
         return;
     }
 
-    const price = getPrice(selectedSize);
+    const price = getDiscountedPrice(selectedSize);
 
     const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, 
@@ -132,7 +135,6 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                 description: result.message || "Could not save your purchase. Please contact support.",
               });
             }
-            setIsPaymentDialogOpen(false);
         },
         prefill: {
             name: user?.displayName || "Trading Enthusiast",
@@ -141,7 +143,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
         },
         modal: {
             ondismiss: function() {
-                setIsPaymentDialogOpen(false);
+                // Do nothing
             }
         },
         notes: {
@@ -160,15 +162,15 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
             title: "Payment Failed",
             description: response.error.description || "Your payment could not be processed. Please try again.",
         });
-        setIsPaymentDialogOpen(false);
     });
     rzp1.open();
   }
 
-  const handleEmailSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      handlePayment(paymentEmail);
-  }
+  const handleBuyNowClick = () => {
+    if (user && user.email) {
+      handlePayment(user.email);
+    }
+  };
 
   return (
     <section id="programs" className="w-full bg-accent py-16 md:py-24">
@@ -265,17 +267,20 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
                     <p className="text-4xl font-bold">{formatCurrency(selectedSize)}</p>
                 </div>
                  <div className="text-center md:text-left">
-                    <p className="text-muted-foreground">Price:</p>
-                    <p className="text-4xl font-bold">{formatCurrency(getPrice(selectedSize))}</p>
+                    <p className="text-muted-foreground">Price: (45% OFF)</p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-4xl font-bold">{formatCurrency(getDiscountedPrice(selectedSize))}</p>
+                      <p className="text-xl text-muted-foreground line-through">{formatCurrency(getOriginalPrice(selectedSize))}</p>
+                    </div>
                 </div>
-                <Dialog open={isPaymentDialogOpen} onOpenChange={setIsPaymentDialogOpen}>
+                <Dialog>
                     <DialogTrigger asChild>
                         <Button size="lg" className="w-full md:w-auto">
                             Buy Now
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
-                        <form onSubmit={handleEmailSubmit}>
+                        <form onSubmit={(e) => { e.preventDefault(); handlePayment(paymentEmail); }}>
                             <DialogHeader>
                             <DialogTitle>Confirm Your Purchase</DialogTitle>
                             <DialogDescription>
@@ -314,5 +319,7 @@ export function ProgramListings({ selectedSize, setSelectedSize }) {
     </section>
   );
 }
+
+    
 
     
