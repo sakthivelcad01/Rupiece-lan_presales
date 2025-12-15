@@ -56,6 +56,7 @@ export function Hero() {
                   height={500}
                   className="rounded-lg object-cover"
                   data-ai-hint="trader looking at screen"
+                  style={{ height: "auto" }}
                 />
               </div>
           </div><br/>
