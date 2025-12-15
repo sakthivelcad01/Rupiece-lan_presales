@@ -5,6 +5,10 @@ import {
   generateTaglines as generateTaglinesFlow,
   type GenerateTaglinesInput,
 } from '@/ai/flows/generate-taglines';
+import {
+  findProgram as findProgramFlow,
+  type FindProgramInput,
+} from '@/ai/flows/find-program-flow';
 import { firestore } from '@/lib/firebase';
 import { addDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { z } from 'zod';
@@ -17,6 +21,20 @@ export async function generateTaglinesAction(input: GenerateTaglinesInput) {
     console.error(error);
     return {
       taglines: [],
+      error: 'Something went wrong on the server. Please try again.',
+    };
+  }
+}
+
+export async function findProgramAction(input: FindProgramInput) {
+  try {
+    const output = await findProgramFlow(input);
+    return {...output, error: null};
+  } catch (error) {
+    console.error(error);
+    return {
+      recommendation: null,
+      reasoning: null,
       error: 'Something went wrong on the server. Please try again.',
     };
   }
