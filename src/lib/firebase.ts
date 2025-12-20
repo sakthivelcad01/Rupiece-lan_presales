@@ -5,7 +5,6 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBJRtNPUHp3ekcsHOxWd7M2SmD3H2FDdEw",
   authDomain: "rupiece-ecactly-what-you-want.firebaseapp.com",
   projectId: "rupiece-ecactly-what-you-want",
   storageBucket: "rupiece-ecactly-what-you-want.appspot.com",
